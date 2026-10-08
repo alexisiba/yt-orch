@@ -1,8 +1,8 @@
 ---
 name: yt-orch-new-project
-description: Creates the scaffolding for a new YouTube video project — a folder named after the video containing markdown documents for the idea, research, sources, outline, production and publishing. Use when the user wants to start, create or set up a new video project, or add the starter documents to an existing project folder, e.g. "let's make a video about Godot", "new YouTube project called X", "set up a project for my next video". Do not use to edit, write content in or review an existing project.
+description: Creates the scaffolding for a new YouTube video project — a folder named after the video containing markdown documents for the idea, research, sources, outline, script, production and publishing. Use when the user wants to start, create or set up a new video project, or add the starter documents to an existing project folder, e.g. "let's make a video about Godot", "new YouTube project called X", "set up a project for my next video". Do not use to edit, write content in or review an existing project.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # yt-orch-new-project
@@ -72,10 +72,11 @@ Read the templates in [assets/templates/](assets/templates/) only now, when you 
 | `Research.md` | Findings, facts to verify, open questions |
 | `Sources.md` | References and what each one supports |
 | `Outline.md` | Hook that delivers on the packaging, sections and ending |
+| `Script.md` | What will be said in the video: hook, body and ending |
 | `Production.md` | Shot list, b-roll, and references to where media lives |
 | `Publishing.md` | Final title and thumbnail variations, description, tags, shorts |
 
-Do not create a script document. Writing the script is a separate step that the user starts when they are ready, either on their own or with a dedicated skill.
+`Script.md` is only a place for the script. Do not write any script content: the user writes it when they are ready, either on their own or with a dedicated skill.
 
 For each template:
 

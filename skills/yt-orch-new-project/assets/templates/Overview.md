@@ -17,6 +17,7 @@ tags:
 - [Research](Research.md)
 - [Sources](Sources.md)
 - [Outline](Outline.md)
+- [Script](Script.md)
 - [Production](Production.md)
 - [Publishing](Publishing.md)
 
