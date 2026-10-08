@@ -2,7 +2,7 @@
 name: yt-orch-new-project
 description: Creates the scaffolding for a new YouTube video project — a folder named after the video containing markdown documents for the idea, research, sources, outline, script, production and publishing. Use when the user wants to start, create or set up a new video project, or add the starter documents to an existing project folder, e.g. "let's make a video about Godot", "new YouTube project called X", "set up a project for my next video". Do not use to edit, write content in or review an existing project.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # yt-orch-new-project
@@ -48,6 +48,8 @@ A folder is likely a video project if it has a hub document whose frontmatter is
 
 ### 3. Check for conflicts
 
+If the user asked for their own templates, resolve them first (see [User templates](#user-templates)); create nothing until they resolve.
+
 Before creating anything, check the project folder. When it is a new folder inside a parent location, an existing folder in that location whose name matches the project name counts as the project folder.
 
 - **It does not exist** → create it.
@@ -62,6 +64,8 @@ Folders next to the project folder whose name is similar but does not match (e.g
 Never offer to replace or overwrite existing content.
 
 ### 4. Create the documents
+
+If the user asked for their own templates, follow [User templates](#user-templates); it says when to also use the bundled templates below.
 
 Read the templates in [assets/templates/](assets/templates/) only now, when you are about to create the files:
 
@@ -87,13 +91,25 @@ For each template:
 
 Besides the project folder, create only files. Do not create empty folders (for media or anything else); documents reference media by path when the user has it.
 
+#### User templates
+
+Use the user's own templates only when they explicitly name the templates and where to take them from (e.g. "use idea, research and script from ~/templates"). Never look for user templates otherwise.
+
+- **Find them.** A file matches a named template when its name, without extension, is equal to the name ignoring case, accents, spaces, hyphens and underscores. Look only in the location the user gave.
+- **Ask before creating anything** when the location does not exist, or when none of the named templates is found in it. Offer to use a different location, use the bundled templates instead, or cancel.
+- **Skip what does not resolve.** When a named template is not found, or matches more than one file, skip it and mention it in the report. Do not replace it with a bundled template or pick a candidate.
+- **Copy, do not adapt.** Do not judge, interpret or restructure the templates. Keep each file's name and content as they are, without translating them. Only replace `{{project_name}}`, `{{date}}` and `{{language}}` if they appear, as described above; leave any other placeholder or template syntax untouched.
+- **Mix only on request.** Add bundled templates only when the user explicitly asks (e.g. "use my idea and the rest of the defaults"). Then create the bundled templates they asked for, following the rules above, except those the user says their own templates replace. If both would have the same file name, keep the user's. If the bundled `Overview.md` is created, link only the documents that exist in the project folder.
+- When adding missing files only, skip any template whose file name already exists in the folder.
+
 ### 5. Report
 
 Tell the user, in their language (see [Language](#language)):
 
 - the full path of the project;
-- which documents were created;
-- which were skipped because they already existed, and any existing files that look like they serve the same purpose as a template (mention them; do not touch them);
+- which documents were created, and from which location when they come from the user's templates;
+- which user templates were skipped because they were not found or matched more than one file (list the candidates);
+- which were skipped because they already existed, and any existing files that look like they serve the same purpose as a bundled template (mention them; do not touch them);
 - any folder next to the project folder with a similar name: say it was not touched and suggest the user check whether it is the same project;
 - any change made to the requested name.
 
@@ -108,5 +124,5 @@ This skill and its templates are written in English as a reference, not as liter
   2. When adding missing files to a folder whose hub document already records a `language`, that language, so the new documents match the existing ones.
   3. The language the user is writing in. If the request is too short to tell (e.g. only a project name), use the language of the rest of the conversation, then the language of the project name.
 - Ask every question and write every report in the language the user is writing in, or the one they asked for. This can differ from the project language only when the new documents follow the language already recorded in the folder.
-- Create file names, headings and guidance comments in the project language.
-- Record the project language in the `language` field of `Overview.md` so later work on the project can keep using it.
+- Create file names, headings and guidance comments of the bundled templates in the project language. User templates are never translated.
+- Record the project language in the `language` field of `Overview.md`, when it is created, so later work on the project can keep using it.

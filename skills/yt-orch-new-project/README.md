@@ -69,7 +69,22 @@ Folders with a similar but different name are left alone. The agent mentions the
 
 ### Language
 
-The documents are created in the language you are writing in, unless you ask for another one. File names, headings and guidance comments are translated; frontmatter keys stay in English. The language is recorded in `Overview.md` so later work on the project keeps using it.
+The documents are created in the language you are writing in, unless you ask for another one. File names, headings and guidance comments are translated; frontmatter keys stay in English. [Custom templates](#custom-templates) are never translated. The language is recorded in `Overview.md` so later work on the project keeps using it.
+
+## Custom templates
+
+If you already have your own templates, you can use them instead of the bundled ones. Tell the agent which templates to use and where they are, for example:
+
+- "New project called How I organize my week, using idea, research and script from ~/templates"
+- "New project called How I organize my week, using my idea from ~/templates and the rest of the defaults"
+
+Be specific: the agent only uses custom templates when you name them and their location. It never searches for them on its own.
+
+- **Matching.** A template matches when its file name, without extension, is the name you gave, ignoring case, accents, spaces, hyphens and underscores. `idea` matches `Idea.md`, but not `idea-v2.md`.
+- **Copied as they are.** Your templates are not reviewed, interpreted or translated. Only `{{project_name}}`, `{{date}}` and `{{language}}` are filled in if they appear; any other syntax (for example, Templater's) is left untouched. Make sure your templates are ready before you list them.
+- **Only what you ask for.** Only the templates you name are created. Bundled templates are added only if you ask for them, as in the second example.
+- **Missing templates are skipped.** If a template is not found, or its name matches more than one file, it is skipped and listed in the final report. It is never replaced with a bundled template. To add it later, ask the agent to add the missing files to the project.
+- **Wrong location.** If the location does not exist, or none of the templates you named are in it, the agent asks before creating anything.
 
 ## What it does not do
 
